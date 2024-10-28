@@ -12,10 +12,10 @@ function App() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const services = await api.get('/services?namespace=default');
-        const deployments = await api.get('/deployments?namespace=default');
-        const statefulsets = await api.get('/statefulsets?namespace=default');
-        const networkPolicies = await api.get('/networkpolicies?namespace=default');
+        const services = await api.get('/services/?namespace=default');
+        const deployments = await api.get('/deployments/?namespace=default');
+        const statefulsets = await api.get('/statefulsets/?namespace=default');
+        const networkPolicies = await api.get('/networkpolicies/?namespace=default');
         
         setData({
           services: services.data,
