@@ -15,13 +15,13 @@ L'image Docker est automatiquement créée et hébergée dans le GitHub Containe
 1. **Pull de l'image Docker :**
 
    ```bash
-   docker pull ghcr.io/mecmus/netpol-viz/netpol-viz-backend:latest
+   docker pull ghcr.io/mecmus/netpol-viz/netpol-viz-back:latest
    ```
 
 2. **Exécuter le conteneur :**
 
    ```bash
-   docker run -p 8000:8000 ghcr.io/mecmus/netpol-viz/netpol-viz-backend:latest
+   docker run -p 8000:8000 ghcr.io/mecmus/netpol-viz/netpol-viz-back:latest
    ```
 
 ## API Endpoints

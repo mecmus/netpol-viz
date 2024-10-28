@@ -1,0 +1,48 @@
+name: Build and Push Frontend Docker Image
+
+on:
+  push:
+    branches:
+      - main
+  release:
+    types: [published]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '18'
+
+    - name: Install dependencies
+      run: npm ci
+      working-directory: ./netpol-viz-frontend
+
+    - name: Build the app
+      run: npm run build
+      working-directory: ./netpol-viz-frontend
+
+    - name: Log in to GitHub Container Registry
+      uses: docker/login-action@v2
+      with:
+        registry: ghcr.io
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Build and push Docker image
+      uses: docker/build-push-action@v4
+      with:
+        context: ./netpol-viz-frontend
+        push: true
+        tags: |
+          ghcr.io/${{ github.repository }}/netpol-viz-frontend:latest
+          ${{ github.event_name == 'release' && 'ghcr.io/${{ github.repository }}/netpol-viz-frontend:${{ github.event.release.tag_name }}' || '' }}
