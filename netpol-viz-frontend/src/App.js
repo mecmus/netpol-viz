@@ -3,9 +3,8 @@ import axios from 'axios';
 import WorkloadGraph from './WorkloadGraph';
 
 const api = axios.create({
-  baseURL: process.env.REACT_APP_API_BASE_URL
+  baseURL: '/api'
 });
-
 
 function App() {
   const [data, setData] = useState({ services: [], deployments: [], statefulsets: [], networkPolicies: [] });
