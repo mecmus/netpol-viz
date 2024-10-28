@@ -1,0 +1,23 @@
+# Fichiers de build
+Dockerfile
+.dockerignore
+
+# Environnements virtuels
+venv/
+
+# Fichiers de configuration
+.vscode/
+.idea/
+
+# Fichiers de log
+*.log
+
+# Fichiers de cache
+__pycache__/
+*.pyc
+*.pyo
+.pyd
+
+# Fichiers de version de contrôle
+.git
+.gitignore

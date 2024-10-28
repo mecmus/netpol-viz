@@ -1,0 +1,17 @@
+# Environnements virtuels
+venv/
+__pycache__/
+
+# Fichiers Python temporaire
+*.pyc
+*.pyo
+*.pyd
+*.log
+
+# Configurations IDE
+.vscode/
+.idea/
+
+# Autres fichiers sensibles
+.env
+*.db
