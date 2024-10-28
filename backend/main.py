@@ -1,4 +1,4 @@
-from fastapi import FastAPI, APIRouter
+from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from kubernetes import client, config
 
@@ -16,7 +16,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-api_router = APIRouter()
+api_router = FastAPI()
 
 # Chargez la configuration du cluster (assurez-vous que votre service account a accès)
 config.load_incluster_config()
@@ -47,4 +47,4 @@ def get_network_policies(namespace: str):
     return {"network_policies": [np.metadata.name for np in policies.items]}
 
 # Montez le routeur sur /api
-app.include_router(api_router, prefix="/api")
+app.mount("/api", api_router)
