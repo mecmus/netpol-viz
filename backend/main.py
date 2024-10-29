@@ -44,7 +44,7 @@ def get_statefulsets(namespace: str):
 def get_network_policies(namespace: str):
     networking_v1 = client.NetworkingV1Api()
     policies = networking_v1.list_namespaced_network_policy(namespace)
-    return {"network_policies": [np.metadata.name for np in policies.items]}
+    return {"network_policies": [policy.to_dict() for policy in policies.items]}
 
 # Montez le routeur sur /api
 app.mount("/api", api_router)
